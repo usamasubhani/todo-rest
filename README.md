@@ -4,6 +4,7 @@
 ### Libraries
 - Flask
 - Flask-SQLAlchemy
+- pytest
 
 
 ### Database
