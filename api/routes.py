@@ -23,3 +23,11 @@ def config_routes(app, db):
             tasks_dict["tasks"].append(t_dict)
         return json.dumps(tasks_dict)
 
+
+    @app.route(base_url + "tasks/<task_id>")
+    def get_task(task_id):
+        task = Task.query.filter_by(id=task_id).first()
+        if not task:
+            return json.dumps("{}")
+        vars(task).pop('_sa_instance_state')
+        return json.dumps(vars(task))

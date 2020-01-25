@@ -31,7 +31,10 @@ def test_tasks_list():
 
 
 def test_retrieve_task():
-    pass
+    url = root_url + "tasks/1"
+    response = client.get(url)
+    assert response.status_code == 200
+    assert b'"id": 1' in response.get_data()
 
 def test_create_task():
     pass
