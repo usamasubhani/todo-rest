@@ -1,10 +1,5 @@
-from flask import Flask
-from config import Config
-from flask_sqlalchemy import SQLAlchemy
+from api import db
 
-app = Flask(__name__)
-app.config.from_object(Config)
-db = SQLAlchemy(app)
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
