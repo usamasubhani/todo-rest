@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Flask
 import pytest
 from api.routes import config_routes
@@ -37,7 +38,17 @@ def test_retrieve_task():
     assert b'"id": 1' in response.get_data()
 
 def test_create_task():
-    pass
+    url = root_url + "tasks"
+    request_data = {
+        "description": "hmmm",
+        "id": "4",
+        "title": "WOW AMZING"
+    }
+    response = client.post(url,
+        data = json.dumps(request_data),
+        content_type = 'application/json')
+    assert response.status_code == 200
+    assert "Success" or "Error" in response.get_data()
 
 def test_update_task():
     pass

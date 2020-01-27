@@ -31,3 +31,18 @@ def config_routes(app, db):
             return json.dumps("{}")
         vars(task).pop('_sa_instance_state')
         return json.dumps(vars(task))
+
+    @app.route(base_url + "tasks", methods=['POST'])
+    def new_task():
+        task = request.json
+        found = Task.query.filter_by(id=task['id']).first()
+        if not found:
+            t = Task(id = task['id'],
+                    title = task['title'],
+                    description = task['description'],
+                    status = False)
+            db.session.add(t)
+            db.session.commit()
+            return "Task Added Successfully"
+        else:
+            return "Error: Task with same ID Already exists!!"
