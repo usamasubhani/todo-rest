@@ -51,7 +51,15 @@ def test_create_task():
     assert "Success" or "Error" in response.get_data()
 
 def test_update_task():
-    pass
+    url = root_url + "tasks/1"
+    request_data = {
+        "description": "hmmm"
+    }
+    response = client.put(url,
+                data = json.dumps(request_data),
+                content_type = 'application/json')
+
+    assert response.status_code == 201
 
 def test_delete_task():
     pass
