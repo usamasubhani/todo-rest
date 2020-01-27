@@ -3,6 +3,7 @@
 
 .vscode/
 *.db
+*.ipynb
 
 ### Flask ###
 instance/*
