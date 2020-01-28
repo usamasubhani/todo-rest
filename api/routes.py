@@ -54,7 +54,7 @@ def config_routes(app, db):
         # req_task = json.loads(request.json)
         req_task = request.json
         task = Task.query.get(task_id)
-        if not task_id:
+        if not task:
             return "Task Not Found"
         if "title" in req_task.keys():
             task.title = req_task['title']
