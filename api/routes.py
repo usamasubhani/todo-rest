@@ -73,4 +73,11 @@ def config_routes(app, db):
         
 
     # Delete Task
-    # @app.route(base_url + "tasks/<task_id>", methods=['DELETE'])
+    @app.route(base_url + "tasks/<task_id>", methods=['DELETE'])
+    def delete_task(task_id):
+        task = Task.query.get(task_id)
+        if not task:
+            return "Task Not Found", 200
+        db.session.delete(task)
+        db.session.commit()
+        return "Deleted", 200

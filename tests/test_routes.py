@@ -61,5 +61,7 @@ def test_update_task():
 
     assert response.status_code == 201
 
-def test_delete_task():
-    pass
+# def test_delete_task():
+#     url = root_url + "tasks/1"
+#     response = client.delete(url)
+#     # assert response.status_code == 204
