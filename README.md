@@ -1,5 +1,16 @@
 # todo-webservice
 
+### Running
+
+```bash
+git clone https://github.com/usamasubhani/todo-webservice.git
+cd todo-webservice
+pip install --user --requirement requirements.txt
+export FLASK_APP=api
+export FLASK_ENV=development
+flask run
+```
+
 
 
 ### Methods
