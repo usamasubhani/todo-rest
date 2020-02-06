@@ -11,6 +11,14 @@ export FLASK_ENV=development
 flask run
 ```
 
+### Using Docker
+```bash
+git clone https://github.com/usamasubhani/todo-webservice.git
+cd todo-webservice
+docker build -t todo-microservice:latest .
+docker run -it -p 5000:5000 todo-microservice
+```
+
 
 
 ### Methods
