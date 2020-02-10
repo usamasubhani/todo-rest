@@ -37,6 +37,7 @@ docker run -it -p 5000:5000 todo-microservice
 
 - Flask
 - Flask-SQLAlchemy
+- flask-cors
 - pytest
 
 
