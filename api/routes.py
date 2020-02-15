@@ -31,19 +31,32 @@ def config_routes(app, db):
         return json.dumps(vars(task))
 
     @app.route(base_url + "tasks", methods=['POST'])
+    # def new_task():
+    #     task = request.json
+    #     found = Task.query.filter_by(id=task['id']).first()
+    #     if not found:
+    #         t = Task(id = task['id'],
+    #                 title = task['title'],
+    #                 description = task['description'],
+    #                 status = False)
+    #         db.session.add(t)
+    #         db.session.commit()
+    #         return "Task Added Successfully"
+    #     else:
+    #         return "Error: Task with same ID Already exists!!"
     def new_task():
         task = request.json
-        found = Task.query.filter_by(id=task['id']).first()
-        if not found:
-            t = Task(id = task['id'],
-                    title = task['title'],
-                    description = task['description'],
-                    status = False)
-            db.session.add(t)
-            db.session.commit()
-            return "Task Added Successfully"
-        else:
-            return "Error: Task with same ID Already exists!!"
+        # found = Task.query.filter_by(id=task['id']).first()
+        # if not found:
+        print(task)
+        t = Task(title = task['title'],
+                description = task['description'],
+                status = False)
+        db.session.add(t)
+        db.session.commit()
+        return tasks_list()
+        # return "SUCCESSS", 200
+        
         
 
     @app.route(base_url + "tasks/<task_id>", methods=['PUT'])
@@ -77,4 +90,4 @@ def config_routes(app, db):
             return "Task Not Found", 200
         db.session.delete(task)
         db.session.commit()
-        return "Deleted", 200
+        return tasks_list(), 202
