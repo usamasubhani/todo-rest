@@ -71,10 +71,10 @@ def config_routes(app, db):
             task.title = req_task['title']
         if "description" in req_task.keys():
             task.description = req_task['description']
-        if "status" in req_task.keys():         
+        if "status" in req_task.keys():      
             if req_task['status']:
                 task.status = True
-            elif req_task['status']:
+            elif not req_task['status']:
                 task.status = False
 
         db.session.commit()
