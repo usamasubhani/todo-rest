@@ -61,25 +61,25 @@ def config_routes(app, db):
 
     @app.route(base_url + "tasks/<task_id>", methods=['PUT'])
     def update_task(task_id):
-        # req_task = json.loads(request.json)
         req_task = request.json
         task = Task.query.get(task_id)
+        
         if not task:
             return "Task Not Found"
+
         if "title" in req_task.keys():
             task.title = req_task['title']
         if "description" in req_task.keys():
             task.description = req_task['description']
-        if "status" in req_task.keys():
-            if req_task['status'] == "True":
+        if "status" in req_task.keys():         
+            if req_task['status']:
                 task.status = True
-            elif req_task['status'] == "False":
+            elif req_task['status']:
                 task.status = False
-            # task.status = bool(req_task['status'])
+
         db.session.commit()
-        # for key in req_task.keys():
-        #     task.
-        return "Success", 201
+
+        return tasks_list(), 200
         
 
     # Delete Task
