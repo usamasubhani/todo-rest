@@ -1,17 +1,13 @@
-# from api import app
 import json
 from flask import request
-# from api import db
 from api.model import Task
 
 def config_routes(app, db):
     
     base_url = "/todo/api/v1.0/"
-    
-    @app.route('/')
-    def root():  
-        return "Hello Worldddd"
 
+    # HTTP GET
+    # Returns all tasks as json
     @app.route("/todo/api/v1.0/tasks")
     def tasks_list():
         t = Task.query.all()
@@ -22,6 +18,10 @@ def config_routes(app, db):
             tasks.append(t_dict)
         return json.dumps(tasks)
 
+
+    # HTTP GET
+    # Search id 
+    # returns a task
     @app.route(base_url + "tasks/<task_id>")
     def get_task(task_id):
         task = Task.query.filter_by(id=task_id).first()
@@ -30,20 +30,11 @@ def config_routes(app, db):
         vars(task).pop('_sa_instance_state')
         return json.dumps(vars(task))
 
+
+    # HTTP POST
+    # Creates new task
+    # Returns tasks list as json
     @app.route(base_url + "tasks", methods=['POST'])
-    # def new_task():
-    #     task = request.json
-    #     found = Task.query.filter_by(id=task['id']).first()
-    #     if not found:
-    #         t = Task(id = task['id'],
-    #                 title = task['title'],
-    #                 description = task['description'],
-    #                 status = False)
-    #         db.session.add(t)
-    #         db.session.commit()
-    #         return "Task Added Successfully"
-    #     else:
-    #         return "Error: Task with same ID Already exists!!"
     def new_task():
         task = request.json
         # found = Task.query.filter_by(id=task['id']).first()
@@ -58,7 +49,9 @@ def config_routes(app, db):
         # return "SUCCESSS", 200
         
         
-
+    # HTTP PUT
+    # Update task
+    # Return Task List
     @app.route(base_url + "tasks/<task_id>", methods=['PUT'])
     def update_task(task_id):
         req_task = request.json
@@ -80,9 +73,11 @@ def config_routes(app, db):
         db.session.commit()
 
         return tasks_list(), 200
-        
 
+
+    # HTTP DELETE
     # Delete Task
+    # Return Tasks List
     @app.route(base_url + "tasks/<task_id>", methods=['DELETE'])
     def delete_task(task_id):
         task = Task.query.get(task_id)
@@ -91,3 +86,9 @@ def config_routes(app, db):
         db.session.delete(task)
         db.session.commit()
         return tasks_list(), 202
+
+
+    # For testing root url
+    @app.route('/')
+    def root():  
+        return "Hello Worldddd"
