@@ -25,11 +25,11 @@ docker run -it -p 5000:5000 todo-microservice
 
 | Method | URI                                                 | Action                |
 | ------ | --------------------------------------------------- | --------------------- |
-| GET    | http://localhost:5000/todo/api/v1.0/tasks           | Get list of all tasks |
-| GET    | http://localhost:5000/todo/api/v1.0/tasks/<task_id> | Get a task            |
-| POST   | http://localhost:5000/todo/api/v1.0/tasks/          | Create task           |
-| PUT    | http://localhost:5000/todo/api/v1.0/tasks/<task_id> | Update task           |
-| DELETE | http://localhost:5000/todo/api/v1.0/tasks/<task_id> | Delete task           |
+| GET    | /todo/api/v1.0/tasks           | Get list of all tasks |
+| GET    | /todo/api/v1.0/tasks/<task_id> | Get a task            |
+| POST   | /todo/api/v1.0/tasks/          | Create task           |
+| PUT    | /todo/api/v1.0/tasks/<task_id> | Update task           |
+| DELETE | /todo/api/v1.0/tasks/<task_id> | Delete task           |
 
 
 
@@ -42,7 +42,7 @@ docker run -it -p 5000:5000 todo-microservice
 
 
 ### Database
-Single table SQLite database with following columns:
+Single table PostgresSQL database with following columns:
 - id
 - title
 - description
